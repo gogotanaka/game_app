@@ -5,7 +5,7 @@ class CreateVideos < ActiveRecord::Migration
       t.integer :view, default: 0
       t.string :contents
       t.string :image_url
-      t.boolean :linkgire, default: false
+      t.boolean :linkrot, default: false
 
       t.timestamps
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420025009) do
+ActiveRecord::Schema.define(version: 20140420050218) do
 
   create_table "movies", force: true do |t|
     t.string   "url",        null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140420025009) do
     t.integer  "view",       default: 0
     t.string   "contents"
     t.string   "image_url"
-    t.boolean  "linkgire",   default: false
+    t.boolean  "linkrot",    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
