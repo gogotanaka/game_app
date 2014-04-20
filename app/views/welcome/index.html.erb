@@ -6,3 +6,7 @@
   <%= text_field_tag "urls[]", "", placeholder: "http://" %>
   <%= submit_tag '次へ', data: {disable_with: 'Find...'} %>
 <% end %>
+
+<%= current_user.email if current_user%>
+
+<%= link_to "sign out", destroy_user_session_path, method: :delete %>
