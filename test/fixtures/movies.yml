@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  iframe: MyString
+  image_url: MyString
+  supplier: MyString
+  video_id: 1
+
+two:
+  url: MyString
+  iframe: MyString
+  image_url: MyString
+  supplier: MyString
+  video_id: 1

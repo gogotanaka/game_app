@@ -1,2 +1,8 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<% @videos.each do |video| %>
+  <% video.title %>
+<% end %>
+
+<%= form_tag new_video_path, method: :get do %>
+  <%= text_field_tag "urls[]", "", placeholder: "http://" %>
+  <%= submit_tag '次へ', data: {disable_with: 'Find...'} %>
+<% end %>
