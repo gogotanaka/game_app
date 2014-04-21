@@ -2,9 +2,8 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
   def new
-    # binding.pry
-    # service = Scraper::Service.new(params[:urls])
-    # service.execute
+    service = Scraper::Service.new(params[:urls])
+    @video_infos = service.execute
     @video = Video.new
   end
 

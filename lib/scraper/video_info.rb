@@ -1,17 +1,19 @@
 module Scraper
-  class VideoData
+  class VideoInfo
     attr_accessor :supplier, :image_urls, :iframe, :url, :title
-    
+
     def initialize(url)
-      @url = url
       doc  = Converter.execute(url)
-      @title = doc.title
+
+      @url        = url
+      @title      = doc.title
+      @image_urls = []
+
       case url
-        when /\Ahttp:\/\/(www\.|)youtube\.com\/.+\z/
-          youtube_scrape(url, doc)
-        else
-          nil
-        end
+      when /\Ahttps*:\/\/(www\.|)youtube\.com\/.+\z/
+        youtube_scrape(url, doc)
+      else
+        nil
       end
     end
 

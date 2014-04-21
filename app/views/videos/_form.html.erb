@@ -16,6 +16,17 @@
     <%= f.text_field :title %>
   </div>
 
+  <div class="field">
+    <%= f.label :contents %><br>
+    <%= f.text_field :contents %>
+  </div>
+
+  <% @video_infos.each do |video_info| %>
+    <%= video_info["iframe"] %>
+    <% video_info["image_urls"].each do |image_url| %>
+      <%= image_url %>
+    <% end %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
