@@ -19,7 +19,11 @@ Rails.application.routes.draw do
 
   # Example resource route with options:
 
-  resources :videos
+  resources :videos do
+    member do
+      get :add, :revoke_add
+    end
+  end
 
   #   resources :products do
   #     member do

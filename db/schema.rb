@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426043613) do
+ActiveRecord::Schema.define(version: 20140426151956) do
 
   create_table "comments", force: true do |t|
     t.string   "contents"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20140426043613) do
 
   add_index "movies", ["url"], name: "index_movies_on_url"
   add_index "movies", ["video_id"], name: "index_movies_on_video_id"
+
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "from_user_id"
+    t.integer  "video_id"
+    t.integer  "kind"
+    t.boolean  "have_read"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relation_adds", force: true do |t|
     t.integer  "user_id"

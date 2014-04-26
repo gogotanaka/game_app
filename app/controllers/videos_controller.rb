@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_video, only: [:show, :edit, :update, :destroy, :add, :revoke_add, :like, :revoke_like]
 
   def new
     service = Scraper::Service.new(params[:urls])
@@ -51,6 +51,16 @@ class VideosController < ApplicationController
       format.html { redirect_to video_url }
       format.json { head :no_content }
     end
+  end
+
+  def add
+    current_user.add_video(@video.id, 1)
+    redirect_to video_path(@video)
+  end
+
+  def revoke_add
+    current_user.revoke_add_video(@video.id)
+    redirect_to video_path(@video)
   end
 
   private

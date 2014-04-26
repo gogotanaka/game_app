@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :relation_likes
   has_many :like_videos, -> { distinct }, through: :relation_likes, source: :video
 
+  has_many :notifications, dependent: :destroy
+  has_many :send_notifications, foreign_key: "from_user_id", class_name: "Notification", dependent: :destroy
 
   def add_video?(video_id)
     add_videos.exists?(id: video_id)
@@ -24,12 +26,13 @@ class User < ActiveRecord::Base
   def add_video(video_id, from_user_id)
     unless add_video?(video_id)
       relation_adds.create!(video_id: video_id, from_user_id: from_user_id)
-      #Notification.send_to(from_user_id).add(pin_id, self.id) unless from_user_id == self.id
+      send_notifications.create(user_id: from_user_id, video_id: video_id, kind: :add)
     end
   end
 
   def revoke_add_video(video_id)
-    user.add_videos.where(id: video_id).destroy_all
+    relation_adds.where(video_id: video_id).destroy_all
+    send_notifications.where(video_id: video_id, kind: :add).destroy_all
   end
 
   def like_video?(video_id)
@@ -43,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def revoke_like_video(video_id)
-    user.like_videos.where(id: video_id).destroy_all
+    relation_likes.where(video_id: video_id).destroy_all
   end
 
 end

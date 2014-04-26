@@ -5,4 +5,10 @@
 
 <%= @video.contents %>
 
+<%= @video.movies.first.iframe.html_safe %>
 
+<% if current_user.add_video?(@video.id) %>
+  <%= link_to "Addを解除する", revoke_add_video_path(@video) %>
+<% else %>
+  <%= link_to "Add", add_video_path(@video) %>
+<% end %>
