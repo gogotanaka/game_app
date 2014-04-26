@@ -13,18 +13,24 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder: "Describe your movie" %>
   </div>
 
   <div class="field">
     <%= f.label :contents %><br>
-    <%= f.text_field :contents %>
+    <%= f.text_area :contents, placeholder: "Describe your movie", rows: "8", type: "text"%>
   </div>
 
+  <% @video_infos.each_with_index do |video_info, i| %>
+    <%= hidden_field_tag "video_infos[#{i}][iframe]", video_info.iframe %>
+    <%= hidden_field_tag "video_infos[#{i}][url]", video_info.url %>
+    <%= hidden_field_tag "video_infos[#{i}][image_url]", video_info.image_urls.sample %>
+  <% end %>
+
   <% @video_infos.each do |video_info| %>
-    <%= video_info["iframe"] %>
-    <% video_info["image_urls"].each do |image_url| %>
-      <%= image_url %>
+    <%= video_info.iframe.html_safe %>
+    <% video_info.image_urls.each do |image_url| %>
+      <%= image_tag image_url, width: "200px", height: "140px" %>
     <% end %>
   <% end %>
   <div class="actions">

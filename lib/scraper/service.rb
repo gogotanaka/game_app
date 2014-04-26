@@ -9,7 +9,7 @@ module Scraper
     end
 
     def execute
-      @urls.map{ |url| VideoInfo.new(url).instance_values }
+      @urls.map{ |url| VideoInfo.new(url) }
     end
   end
 end
