@@ -1,0 +1,29 @@
+<h1>Users#edit</h1>
+<p>Find me in app/views/users/edit.html.erb</p>
+
+<div class="user_form_cotainer">
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <ul class="user_form inside">
+      <h1>Edit Account Setting</h1>
+      <li>
+        <div class=""><%= f.label :contents %></div>
+        <div class=""><%= f.text_area :contents %></div>
+      </li>
+      <li>
+        <%= f.label :username %><br />
+        <%= f.text_field :username %>
+      </li>
+    </ul>
+    <%= f.submit %>
+  <% end %>
+</div>

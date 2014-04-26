@@ -19,6 +19,21 @@ class User < ActiveRecord::Base
   has_many :notifications, dependent: :destroy
   has_many :send_notifications, foreign_key: "from_user_id", class_name: "Notification", dependent: :destroy
 
+
+  def follow_user?(user_id)
+    follows.exists?(id: user_id)
+  end
+
+  def follow_user(user_id)
+    unless follow_user?(user_id) || id == user_id
+      relation_user_follows.create!(follow_id: user_id)
+    end
+  end
+
+  def revoke_follow_user(user_id)
+    relation_user_follows.where(follow_id: user_id).destroy_all
+  end
+
   def add_video?(video_id)
     add_videos.exists?(id: video_id)
   end

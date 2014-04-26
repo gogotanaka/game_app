@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'users/edit'
+
+  get 'users/follows'
+
+  get 'users/followers'
+
+  get 'users/profile'
+
+  get 'users/likes'
+
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
   get 'welcome/index'
 
@@ -22,6 +32,12 @@ Rails.application.routes.draw do
   resources :videos do
     member do
       get :add, :revoke_add
+    end
+  end
+
+  resources :users do
+    member do
+      get :profile
     end
   end
 
