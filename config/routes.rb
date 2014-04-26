@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tags/index'
+
   get 'users/edit'
 
   get 'users/follows'
