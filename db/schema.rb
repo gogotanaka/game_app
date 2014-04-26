@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420070217) do
+ActiveRecord::Schema.define(version: 20140426043613) do
+
+  create_table "comments", force: true do |t|
+    t.string   "contents"
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "movies", force: true do |t|
     t.string   "url",        null: false
@@ -25,6 +33,42 @@ ActiveRecord::Schema.define(version: 20140420070217) do
 
   add_index "movies", ["url"], name: "index_movies_on_url"
   add_index "movies", ["video_id"], name: "index_movies_on_video_id"
+
+  create_table "relation_adds", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.integer  "from_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relation_likes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.integer  "relation_add_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relation_user_follows", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "follow_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "relation_video_tags", force: true do |t|
+    t.integer  "video_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
