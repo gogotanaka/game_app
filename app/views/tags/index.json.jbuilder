@@ -1,4 +1,4 @@
-json.array!(@tagsds) do |tagsd|
-  json.extract! tagsd, :id
-  json.url tagsd_url(tagsd, format: :json)
+json.array!(@tags) do |tag|
+  json.extract! tag, :id
+  json.extract! tag, :name
 end

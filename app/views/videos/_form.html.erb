@@ -10,7 +10,9 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field" id="video_tag_tokens">
+    <%= f.text_field :tag_tokens, data: {load: @video.tags} %>
+  </div>
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title, placeholder: "Describe your movie" %>
