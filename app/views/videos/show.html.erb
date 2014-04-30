@@ -26,5 +26,5 @@
 <% end %>
 
 <% @video.comments.each do |comment| %>
-  <%= comment.contents %> by <%= comment.user.name %><br>
+  <%= comment.contents %> by <%= link_to comment.user.name, profile_user_path(comment.user) %><br>
 <% end %>

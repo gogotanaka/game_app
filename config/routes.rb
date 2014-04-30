@@ -1,16 +1,6 @@
 Rails.application.routes.draw do
   get 'tags/index'
 
-  get 'users/edit'
-
-  get 'users/follows'
-
-  get 'users/followers'
-
-  get 'users/profile'
-
-  get 'users/likes'
-
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
   get 'welcome/index'
 
@@ -40,7 +30,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :profile
+      get :profile, :follows, :followers, :likes
     end
   end
 
