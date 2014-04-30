@@ -1,14 +1,30 @@
-<h1>Videos#show</h1>
-<p>Find me in app/views/videos/show.html.erb</p>
+<div>
+  <h1><%= @video.title %></h1>
 
-<%= @video.title %>
+  <%= @video.contents %>
 
-<%= @video.contents %>
-
-<%= @video.movies.first.iframe.html_safe %>
+  <%= @video.movies.first.iframe.html_safe %>
+</div>
 
 <% if current_user.add_video?(@video.id) %>
   <%= link_to "Addを解除する", revoke_add_video_path(@video) %>
 <% else %>
   <%= link_to "Add", add_video_path(@video) %>
+<% end %>
+
+<% if current_user.like_video?(@video.id) %>
+  <%= link_to "いいね！を取り消す", revoke_like_video_path(@video) %>
+<% else %>
+  <%= link_to "いいね！", like_video_path(@video) %>
+<% end %>
+
+<%if current_user %>
+  <%= form_tag post_comment_video_path do %>
+    <%= text_field_tag :contents, '', placeholder: "コメントを入力してください" %>
+    <%= submit_tag "コメント", disable_with: 'コメント中' %>
+  <% end %>
+<% end %>
+
+<% @video.comments.each do |comment| %>
+  <%= comment.contents %> by <%= comment.user.name %><br>
 <% end %>

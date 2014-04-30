@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :notifications, dependent: :destroy
   has_many :send_notifications, foreign_key: "from_user_id", class_name: "Notification", dependent: :destroy
 
+  has_many :comments
 
   def follow_user?(user_id)
     follows.exists?(id: user_id)

@@ -1,5 +1,5 @@
 class VideosController < ApplicationController
-  before_action :set_video, only: [:show, :edit, :update, :destroy, :add, :revoke_add, :like, :revoke_like]
+  before_action :set_video, only: [:show, :edit, :update, :destroy, :add, :revoke_add, :like, :revoke_like, :post_comment]
 
   def new
     service = Scraper::Service.new(params[:urls])
@@ -60,6 +60,21 @@ class VideosController < ApplicationController
 
   def revoke_add
     current_user.revoke_add_video(@video.id)
+    redirect_to video_path(@video)
+  end
+
+  def like
+    current_user.like_video(@video.id)
+    redirect_to video_path(@video)
+  end
+
+  def revoke_like
+    current_user.revoke_like_video(@video.id)
+    redirect_to video_path(@video)
+  end
+
+  def post_comment
+    current_user.comments.create(video_id: @video.id, contents: params[:contents])
     redirect_to video_path(@video)
   end
 

@@ -33,7 +33,8 @@ Rails.application.routes.draw do
 
   resources :videos do
     member do
-      get :add, :revoke_add
+      get :add, :revoke_add, :like, :revoke_like
+      post :post_comment
     end
   end
 

@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426151956) do
+ActiveRecord::Schema.define(version: 20140430002612) do
 
   create_table "comments", force: true do |t|
-    t.string   "contents"
     t.integer  "user_id"
     t.integer  "video_id"
+    t.string   "contents"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20140426151956) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
-    t.string   "username",               default: "", null: false
+    t.string   "name",                   default: "", null: false
     t.string   "contents",               default: ""
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140426151956) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["name"], name: "index_users_on_name", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "videos", force: true do |t|
