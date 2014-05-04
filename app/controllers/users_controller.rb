@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:follows, :followers, :profile, :likes, :edit, :update]
+  before_action :set_user, only: [:follows, :followers, :profile, :likes, :edit, :update, :follow, :unfollow]
 
   before_action :authenticate_user, only: [:edit]
   def follows
@@ -17,6 +17,15 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def follow
+    current_user.follow_user(@user.id)
+    redirect_to :back
+  end
+
+  def unfollow
+    current_user.revoke_follow_user(@user.id)
+    redirect_to :back
+  end
 
   def update
     respond_to do |format|

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :profile, :follows, :followers, :likes
+      post :follow, :unfollow
     end
   end
 

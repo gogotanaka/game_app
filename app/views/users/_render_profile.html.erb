@@ -1,0 +1,12 @@
+<h1><%= user.email %></h1>
+
+<%= link_to '追加', profile_user_path(user) %>
+<%= link_to 'いいね', likes_user_path(user) %>
+<%= link_to 'フォロー', follows_user_path(user) %>
+<%= link_to 'フォロワー', followers_user_path(user) %>
+
+<% if current_user && current_user.follow_user?(user.id) %>
+  <%= link_to 'フォローを外す', unfollow_user_path(user), method: :post %>
+<% else %>
+  <%= link_to ' フォローする', follow_user_path(user), method: :post  %>
+<% end %>
