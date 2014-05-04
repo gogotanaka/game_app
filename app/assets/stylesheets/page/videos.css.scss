@@ -1,0 +1,20 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#videos {
+  #show {
+    li.list-item-related {
+      margin: 10px;
+      list-style-type: none;
+      .thumb-related {
+        margin-right: 10px;
+      }
+    }
+    .info {
+      .byline {
+        margin-left: 10px;
+      }
+    }
+  }
+}

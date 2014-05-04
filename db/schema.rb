@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20140430002612) do
     t.string   "contents"
     t.string   "image_url"
     t.boolean  "linkrot",    default: false
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

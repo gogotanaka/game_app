@@ -1,30 +1,62 @@
-<div>
-  <h1><%= @video.title %></h1>
+<div id="videos">
+  <div id="show">
+    <div class="main-panel col-md-9">
 
-  <%= @video.contents %>
+      <%= @video.contents %>
 
-  <%= @video.movies.first.iframe.html_safe %>
+      <%= @video.movies.first.iframe.html_safe %>
+      <h1><%= @video.title %></h1>
+      <div class='info clearfix'>
+        <span class='user-thumb pull-left'>
+          <%= image_tag 'http://masturbate.jp/assets/Cookie-7caf1ba084d419cb7f3603d4d693e3dd.png', width: '60px' %>
+        </span>
+        <dl class='pull-left byline'>
+          <dt><%= @video.user.email %></dt>
+          <dt><%= render 'shared/follow_btn', user: @video.user %></dt>
+        </dl>
+      </div>
+      <%= render 'shared/add_btn', video: @video %>
+
+      <%= render 'shared/like_btn', video: @video %>
+
+      <section class='comments'>
+        <% @video.comments.each do |comment| %>
+        　<article>
+            <div class='info clearfix'>
+              <span class='user-thumb pull-left'>
+                <%= image_tag 'http://masturbate.jp/assets/Cookie-7caf1ba084d419cb7f3603d4d693e3dd.png', width: '60px' %>
+              </span>
+              <dl class='pull-left byline'>
+                <dt><%= @video.user.email %></dt>
+                <dt><%= comment.contents %></dt>
+              </dl>
+            </div>
+          </article>
+        <% end %>
+      </section>
+
+      <%if current_user %>
+        <%= form_tag post_comment_video_path do %>
+          <%= text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3 %>
+          <%= submit_tag "コメント", disable_with: 'コメント中', class: "btn" %>
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <div class="side-panel col-md-3">
+      <ul>
+      <% Video.all.each do |video| %>
+        <li class='clearfix list-item-related'>
+          <span class='thumb-related'>
+            <%= image_tag video.movies.first.image_url, width: '100px' %>
+          </span>
+          <span>
+            <%= video.title %>
+          </span>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
 </div>
-
-<% if current_user.add_video?(@video.id) %>
-  <%= link_to "Addを解除する", revoke_add_video_path(@video) %>
-<% else %>
-  <%= link_to "Add", add_video_path(@video) %>
-<% end %>
-
-<% if current_user.like_video?(@video.id) %>
-  <%= link_to "いいね！を取り消す", revoke_like_video_path(@video) %>
-<% else %>
-  <%= link_to "いいね！", like_video_path(@video) %>
-<% end %>
-
-<%if current_user %>
-  <%= form_tag post_comment_video_path do %>
-    <%= text_field_tag :contents, '', placeholder: "コメントを入力してください" %>
-    <%= submit_tag "コメント", disable_with: 'コメント中' %>
-  <% end %>
-<% end %>
-
-<% @video.comments.each do |comment| %>
-  <%= comment.contents %> by <%= link_to comment.user.email, profile_user_path(comment.user) %><br>
-<% end %>
