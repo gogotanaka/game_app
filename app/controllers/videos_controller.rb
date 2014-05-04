@@ -8,6 +8,8 @@ class VideosController < ApplicationController
   end
 
   def show
+    @video.view += 1
+    @video.save
   end
 
   def edit

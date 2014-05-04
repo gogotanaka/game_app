@@ -18,10 +18,13 @@
       <%= render 'shared/add_btn', video: @video %>
 
       <%= render 'shared/like_btn', video: @video %>
-
+      <i class="fa fa-plus"></i><%= @video.add_count %>
+      <i class="fa fa-thumbs-up"></i><%= @video.like_count %>
+      <i class="fa fa-eye"></i><%= @video.view %>
       <section class='comments'>
         <% @video.comments.each do |comment| %>
         　<article>
+
             <div class='info clearfix'>
               <span class='user-thumb pull-left'>
                 <%= image_tag 'http://masturbate.jp/assets/Cookie-7caf1ba084d419cb7f3603d4d693e3dd.png', width: '60px' %>

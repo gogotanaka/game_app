@@ -13,4 +13,6 @@
  *= require_tree .//common
  *= require_tree .//page
  *= require_tree .//third_party
+ *= require font-awesome
  */
+
