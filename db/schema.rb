@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140430002612) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.integer  "video_id"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20140430002612) do
     t.datetime "updated_at"
   end
 
-  add_index "movies", ["url"], name: "index_movies_on_url"
-  add_index "movies", ["video_id"], name: "index_movies_on_video_id"
+  add_index "movies", ["url"], name: "index_movies_on_url", using: :btree
+  add_index "movies", ["video_id"], name: "index_movies_on_video_id", using: :btree
 
   create_table "notifications", force: true do |t|
     t.integer  "user_id"
@@ -82,7 +85,6 @@ ActiveRecord::Schema.define(version: 20140430002612) do
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
-    t.string   "name",                   default: "", null: false
     t.string   "contents",               default: ""
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -97,8 +99,8 @@ ActiveRecord::Schema.define(version: 20140430002612) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["name"], name: "index_users_on_name", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "videos", force: true do |t|
     t.string   "title",                      null: false
@@ -111,6 +113,6 @@ ActiveRecord::Schema.define(version: 20140430002612) do
     t.datetime "updated_at"
   end
 
-  add_index "videos", ["title"], name: "index_videos_on_title"
+  add_index "videos", ["title"], name: "index_videos_on_title", using: :btree
 
 end

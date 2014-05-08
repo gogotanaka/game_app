@@ -16,7 +16,7 @@ class VideosController < ApplicationController
   end
 
   def create
-    @video = Video.new(video_params)
+    @video = current_user.videos.new(video_params)
     movies = movie_params_ary.map do |movie_params|
       movie = Movie.new(movie_params)
     end

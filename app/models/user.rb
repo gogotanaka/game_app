@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   has_many :comments
 
+  has_many :videos
+
   def follow_user?(user_id)
     follows.exists?(id: user_id)
   end
