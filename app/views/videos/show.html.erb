@@ -8,7 +8,7 @@
       <h1><%= @video.title %></h1>
       <div class='info clearfix'>
         <span class='user-thumb pull-left'>
-          <%= image_tag 'http://masturbate.jp/assets/Cookie-7caf1ba084d419cb7f3603d4d693e3dd.png', width: '60px' %>
+          <%= render 'shared/user_image', user: @video.user %>
         </span>
         <dl class='pull-left byline'>
           <dt><%= @video.user.email %></dt>
@@ -27,7 +27,7 @@
 
             <div class='info clearfix'>
               <span class='user-thumb pull-left'>
-                <%= image_tag 'http://masturbate.jp/assets/Cookie-7caf1ba084d419cb7f3603d4d693e3dd.png', width: '60px' %>
+                <%= render 'shared/user_image', user: comment.user %>
               </span>
               <dl class='pull-left byline'>
                 <dt><%= @video.user.email %></dt>
