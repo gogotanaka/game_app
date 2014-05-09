@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise'
 
+gem 'haml-rails'
 group :test, :development do
   gem 'pry'
   gem 'pry-rails'

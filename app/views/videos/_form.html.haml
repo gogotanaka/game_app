@@ -7,6 +7,8 @@
       %ul
         - @video.errors.full_messages.each do |message|
           %li= message
+  .actions
+    = f.submit '動画を追加', class: 'btn btn-info'
   .field
     = f.label :title
     %br/
@@ -17,13 +19,17 @@
     = f.text_area :contents, placeholder: "Describe your movie", rows: "8", type: "text", class: 'form-control'
   #video_tag_tokens.field
     = f.text_field :tag_tokens, data: {load: @video.tags}, class: 'form-control'
+
   - @video_infos.each_with_index do |video_info, i|
     = hidden_field_tag "video_infos[#{i}][iframe]", video_info.iframe
     = hidden_field_tag "video_infos[#{i}][url]", video_info.url
     = hidden_field_tag "video_infos[#{i}][image_url]", video_info.image_urls.sample
-  - @video_infos.each do |video_info|
-    = video_info.iframe.html_safe
-    - video_info.image_urls.each do |image_url|
-      = image_tag image_url, width: "200px", height: "140px"
-  .actions
-    = f.submit
+
+  - @video_infos.each.with_index(1) do |video_info, i|
+    %h2= "動画 #{i}"
+    .row
+      = video_info.iframe.html_safe
+      .row
+        - video_info.image_urls.each do |image_url|
+          .col-md-4= image_tag image_url, width: "200px", height: "140px"
+
