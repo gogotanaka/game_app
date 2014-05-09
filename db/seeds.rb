@@ -2,6 +2,8 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
+%w(ps3 ゲームキューブ マリオ).each{|name| Tag.create(name: name)}
+
 urls = [
          "https://www.youtube.com/watch?v=r8OipmKFDeM",
          "https://www.youtube.com/watch?v=6hzrDeceEKc",
