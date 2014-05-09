@@ -1,7 +1,0 @@
-<% if current_user %>
-  <% if current_user.add_video?(video.id) %>
-    <%= link_to "追加を解除する", revoke_add_video_path(video), class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to "追加", add_video_path(video), class: "btn btn-primary"  %>
-  <% end %>
-<% end %>

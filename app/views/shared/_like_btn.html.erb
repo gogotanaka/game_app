@@ -1,7 +1,0 @@
-<% if current_user %>
-  <% if current_user.like_video?(video.id) %>
-    <%= link_to "いいね！を取り消す", revoke_like_video_path(video), class: "btn btn-default" %>
-  <% else %>
-    <%= link_to "いいね！", like_video_path(video), class: "btn btn-default" %>
-  <% end %>
-<% end %>

@@ -1,0 +1,4 @@
+- if current_user && current_user.follow_user?(user.id)
+  = link_to 'フォローを外す', unfollow_user_path(user), method: :post, class: 'btn btn-info'
+- else
+  = link_to ' フォローする', follow_user_path(user), method: :post, class: 'btn btn-info'
