@@ -37,6 +37,7 @@
         - Video.all.each do |video|
           %li.clearfix.list-item-related
             %span.thumb-related
-              = image_tag video.movies.first.image_url, width: '100px'
+              = link_to video_path(video) do
+                = image_tag video.movies.first.image_url, width: '100px'
             %span
               = video.title
