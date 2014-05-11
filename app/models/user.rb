@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
 
   def revoke_add_video(video_id)
     relation_adds.where(video_id: video_id).destroy_all
-    send_notifications.where(video_id: video_id, kind: :add).destroy_all
+    send_notifications.add.where(video_id: video_id).destroy_all
   end
 
   def like_video?(video_id)
@@ -61,11 +61,23 @@ class User < ActiveRecord::Base
   def like_video(video_id)
     unless like_video?(video_id)
       relation_likes.create!(video_id: video_id)
+      send_notifications.create(user_id: Video.find(video_id).user_id, video_id: video_id, kind: :like)
     end
   end
 
   def revoke_like_video(video_id)
     relation_likes.where(video_id: video_id).destroy_all
+    send_notifications.like.where(video_id: video_id).destroy_all
+  end
+
+  def post_comment(video_id, contents)
+    comments.create(video_id: video_id, contents: contents)
+    send_notifications.create(user_id: Video.find(video_id).user_id, video_id: video_id, kind: :comment)
+  end
+
+  def revoke_comment(comment_id)
+    comment = Comment.find(comment_id)
+    comment.destroy if self == comment.user
   end
 
 end

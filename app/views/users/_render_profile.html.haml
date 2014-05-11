@@ -1,4 +1,5 @@
 %h1= user.email
+%h1= render 'shared/user_image', user: user, size: 30
 = link_to '追加', profile_user_path(user)
 = link_to 'いいね', likes_user_path(user)
 = link_to 'フォロー', follows_user_path(user)

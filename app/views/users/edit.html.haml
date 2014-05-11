@@ -16,7 +16,8 @@
       %div= f.label :contents
       %div= f.text_area :contents
     %li
-      = f.label :name
+      = f.label :email
       %br/
-      = f.text_field :name
+      = f.text_field :email
+      = f.file_field :image
     = f.submit

@@ -26,6 +26,10 @@ Rails.application.routes.draw do
       get :add, :revoke_add, :like, :revoke_like
       post :post_comment
     end
+    collection do
+      post :revoke_comment
+      get :search
+    end
   end
 
   resources :users do

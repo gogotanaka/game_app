@@ -6,7 +6,7 @@
       %h1= @video.title
       .info.clearfix
         %span.user-thumb.pull-left
-          = render 'shared/user_image', user: @video.user
+          = render 'shared/user_image', user: @video.user, size: 30
         %dl.pull-left.byline
           %dt= @video.user.email
           %dt= render 'shared/follow_btn', user: @video.user
@@ -24,10 +24,12 @@
           %article
             .info.clearfix
               %span.user-thumb.pull-left
-                = render 'shared/user_image', user: comment.user
+                = render 'shared/user_image', user: comment.user, size: 30
               %dl.pull-left.byline
                 %dt= @video.user.email
                 %dt= comment.contents
+                - if current_user == comment.user
+                  %dt= link_to 'x', revoke_comment_videos_path(comment_id: comment.id), method: :post
       - if current_user
         = form_tag post_comment_video_path do
           = text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3

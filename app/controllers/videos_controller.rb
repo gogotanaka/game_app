@@ -57,27 +57,36 @@ class VideosController < ApplicationController
 
   def add
     current_user.add_video(@video.id, 1)
-    redirect_to video_path(@video)
+    redirect_to :back
   end
 
   def revoke_add
     current_user.revoke_add_video(@video.id)
-    redirect_to video_path(@video)
+    redirect_to :back
   end
 
   def like
     current_user.like_video(@video.id)
-    redirect_to video_path(@video)
+    redirect_to :back
   end
 
   def revoke_like
     current_user.revoke_like_video(@video.id)
-    redirect_to video_path(@video)
+    redirect_to :back
   end
 
   def post_comment
-    current_user.comments.create(video_id: @video.id, contents: params[:contents])
-    redirect_to video_path(@video)
+    current_user.post_comment(@video.id, params[:contents])
+    redirect_to :back
+  end
+
+  def revoke_comment
+    current_user.revoke_comment(params[:comment_id])
+    redirect_to :back
+  end
+
+  def search
+    @videos = Video.all
   end
 
   private

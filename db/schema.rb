@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20140430002612) do
     t.string   "email",                  default: "", null: false
     t.string   "contents",               default: ""
     t.string   "encrypted_password",     default: "", null: false
+    t.string   "image"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 20140430002612) do
     t.string   "image_url"
     t.boolean  "linkrot",    default: false
     t.integer  "user_id"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

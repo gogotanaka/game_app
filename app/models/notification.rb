@@ -1,3 +1,3 @@
 class Notification < ActiveRecord::Base
-  enum kind: [:add, :like, :comment, :follow]
+  enum kind: %i(add like comment follow)
 end

@@ -9,3 +9,9 @@ $ ->
     prePopulate: $('#video_tag_tokens').data('load')
     resultsFormatter: (item) ->
       return "<li>" + item.name + "</li>"
+
+$ ->
+  $(".item").hover(
+    -> $(this).find(".like_add_container").show(),
+    -> $(this).find(".like_add_container").hide()
+  )

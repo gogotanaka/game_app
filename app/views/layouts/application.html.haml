@@ -15,45 +15,55 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "#"} A Button
+          = link_to 'A Button', root_path, class: 'navbar-brand'
         / Collect the nav links, forms, and other content for toggling
-        /
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-          <li class="divider"></li>
-          <li><a href="#">One more separated link</a></li>
-          </ul>
-          </li>
-          </ul>
-        %form.navbar-form.navbar-left{:role => "search"}
-          .form-group
-            %input.form-control{:placeholder => "Search", :type => "text"}/
-          %button.btn.btn-default{:type => "submit"} Submit
-        /
-          <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-          </ul>
-          </li>
-          </ul>
-      / /.navbar-collapse
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li.active
+              %a{:href => "#"} Link
+            %li
+              %a{:href => "#"} Link
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                Dropdown
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider
+                %li
+                  %a{:href => "#"} Separated link
+                %li.divider
+                %li
+                  %a{:href => "#"} One more separated link
+          = form_tag search_videos_path, method: :get, class: 'navbar-form navbar-left' do
+            .form-group
+              = text_field_tag 'word', '', placeholder: "Search", class: 'form-control'
+            = submit_tag '検索', data: {disable_with: 'Find...'}, class: 'btn btn-default'
+          - if current_user
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                = form_tag new_video_path, method: :get do
+                  = text_field_tag "urls[]", "", placeholder: "http://", class: 'form-control'
+                  = submit_tag '動画を取得', data: {disable_with: 'Find...'}, class: 'btn'
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = current_user.email
+                  %b.caret
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => "#"} Action
+                  %li
+                    %a{:href => "#"} Another action
+                  %li
+                    %a{:href => "#"} Something else here
+                  %li.divider
+                  %li= link_to '設定', edit_user_path(current_user)
+        / /.navbar-collapse
       / /.container-fluid
     .main-containar
       = yield

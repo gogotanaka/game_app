@@ -1,0 +1,82 @@
+- videos.each do |video|
+  .item
+    .like_add_container
+      = render 'shared/add_btn', video: video
+      = render 'shared/like_btn', video: video
+    .video_container
+      .video_inner_image
+        = link_to video_path(video) do
+          = image_tag video.movies.first.image_url, width: '212px'
+      .video_title_area.clearfix
+        %h3.title= link_to video.title, video
+      %p.description= video.contents
+      / .tag_container.clearfix
+      /   - video.tags.each do |tag|
+      /     %h4.tag= link_to tag.name, tag
+      .like_add_count
+        = 'You Tube'
+        %i.fa.fa-plus
+        = video.relation_adds.size
+        %i.fa.fa-heart
+        = video.relation_likes.size
+        %i.fa.fa-eye
+        = video.view
+    .video_comments
+      .comment.clearfix
+        .comment_image
+          = render 'shared/user_image', {user: video.user, size: 30}
+        .pin_user.clearfix
+          = sanitize add_info(video.user), tags: %w(a)
+
+      - video.comments.order("created_at").each do |comment|
+        .comment.clearfix
+          .comment_image
+            = render 'shared/user_image', {user: video.user, size: 30}
+          .comment_contents
+            %p.comment_username
+              = link_to comment.user.email, profile_user_path(comment.user)
+            %p.contents
+              = comment.contents
+            %p.GrayColor
+              = time_ago_in_words(comment.created_at)
+              前 •
+              / - if current_user
+              /   - relation_id = 1 unless relation_id
+              /   %span{id: 'like_of_' + comment.id.to_s + '_from_' + current_user.id.to_s + '_disting_' + relation_id.to_s}
+              /     = render partial: 'comments/like_count',locals: {comment: comment, relation_id: relation_id}
+              / - else
+              /   = render partial: 'comments/like_count',locals: {comment: comment, relation_id: relation_id}
+      / - if current_user
+      /   .comment.clearfix
+      /     .comment_image
+      /       = render partial: 'shared/image_user_without_link',locals: {user: current_user, size: "30px"}
+      /     .comment_contents
+      /       = form_for(Comment.new) do |f|
+      /         = f.hidden_field :pin_id, value: pin.id
+      /         = f.text_field :contents, placeholder: "Add a comment...", class: "large_input"
+      /         .comment_submit
+      /           = f.submit "コメント", disable_with: 'コメント中', class: "btn btn_default btn_sm"
+
+
+
+
+
+
+
+
+      / = render partial: 'shared/feed_comment',locals: {pin: pin, relation_id: feed_item.id}
+
+
+
+
+
+
+    / %div
+    /   = video.title
+    / %div
+    /   = render 'shared/user_image', user: video.user, size: 30
+
+    / %div
+    /
+    /     = comment.contents
+    /     by #{comment.user.email}
