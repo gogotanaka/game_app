@@ -47,9 +47,9 @@
           - if current_user
             %ul.nav.navbar-nav.navbar-right
               %li
-                = form_tag new_video_path, method: :get do
-                  = text_field_tag "urls[]", "", placeholder: "http://", class: 'form-control'
-                  = submit_tag '動画を取得', data: {disable_with: 'Find...'}, class: 'btn'
+                %a.fancybox{href: "#add_movie", title: "Add a Movie"}
+                  %i.fa.fa-plus-circle
+                  アド
               %li.dropdown
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
                   = current_user.email
@@ -63,6 +63,17 @@
                     %a{:href => "#"} Something else here
                   %li.divider
                   %li= link_to '設定', edit_user_path(current_user)
+          #add_movie{style: "width:500px; display: none;"}
+            %p.add_movie_topic.clearfix
+              動画を追加
+            #url_form
+              = form_tag new_video_path, method: :get do
+                .url_form_field.url_form_add_link
+                  = text_field_tag "urls[]", "", placeholder: "http://", class: 'form-control'
+                / #url_form_for_multiply.url_form_add_link
+                /   = link_to "連作を追加する", multiply_form_ajax_pins_path(amount: 1), remote: true
+                .url_form_submit
+                  = submit_tag '動画を取得', data: {disable_with: 'Find...'}, class: 'btn'
         / /.navbar-collapse
       / /.container-fluid
     .main-containar

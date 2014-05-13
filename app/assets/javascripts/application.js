@@ -20,6 +20,10 @@
 //= require turbolinks
 
 
+$(document).ready(function() {
+  $(".fancybox").fancybox();
+});
+
 $(function(){
   var $timeline = $('#timeline');
   $timeline.imagesLoaded(function(){
