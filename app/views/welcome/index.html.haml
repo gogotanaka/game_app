@@ -1,7 +1,2 @@
-- if current_user
-  = link_to "sign out", destroy_user_session_path, method: :delete
-= current_user.email if current_user
-= link_to '新規登録', new_user_registration_path
-= link_to 'ログイン', new_user_session_path
 #timeline.centered.clearfix
   = render 'shared/videos_by_video', videos: @videos
