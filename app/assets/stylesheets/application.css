@@ -16,20 +16,3 @@
  *= require_tree .//third_party
  *= require font-awesome
  */
-
-.item {
-  width: 212px;
-  padding: 0;
-  margin: 7px;
-  float: left;
-  background: #ffffff;
-  box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
-  font-size: 11px;
-  position: relative;
-  overflow: hidden;
-  list-style-type: none;
-}
-#timeline {
-  position: relative;
-  padding: 0 0 120px;
-}

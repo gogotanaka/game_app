@@ -6,7 +6,7 @@
     .video_container
       .video_inner_image
         = link_to video_path(video) do
-          = image_tag video.movies.first.image_url, width: '212px'
+          = image_tag video.movies.first.image_url, width: '238px'
       .video_title_area.clearfix
         %h3.title= link_to video.title, video
       %p.description= video.contents
