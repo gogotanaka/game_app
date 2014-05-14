@@ -20,26 +20,26 @@
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li.active
-              %a{:href => "#"} Link
+              = link_to 'Popular', popular_videos_path
             %li
-              %a{:href => "#"} Link
-            %li.dropdown
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Dropdown
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => "#"} Action
-                %li
-                  %a{:href => "#"} Another action
-                %li
-                  %a{:href => "#"} Something else here
-                %li.divider
-                %li
-                  %a{:href => "#"} Separated link
-                %li.divider
-                %li
-                  %a{:href => "#"} One more separated link
+              = link_to 'Everything', everything_videos_path
+            / %li.dropdown
+            /   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            /     Dropdown
+            /     %b.caret
+            /   %ul.dropdown-menu
+            /     %li
+            /       %a{:href => "#"} Action
+            /     %li
+            /       %a{:href => "#"} Another action
+            /     %li
+            /       %a{:href => "#"} Something else here
+            /     %li.divider
+            /     %li
+            /       %a{:href => "#"} Separated link
+            /     %li.divider
+            /     %li
+            /       %a{:href => "#"} One more separated link
           = form_tag search_videos_path, method: :get, class: 'navbar-form navbar-left' do
             .form-group
               = text_field_tag 'word', '', placeholder: "Search", class: 'form-control'

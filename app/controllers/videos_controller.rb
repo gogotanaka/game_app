@@ -89,6 +89,14 @@ class VideosController < ApplicationController
     @videos = Video.all
   end
 
+  def popular
+    @videos = Video.all
+  end
+
+  def everything
+    @videos = Video.all
+  end
+
   private
 
     def set_video

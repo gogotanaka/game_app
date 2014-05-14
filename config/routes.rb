@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'videos/popular'
+
   get 'tags/index'
 
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
     end
     collection do
       post :revoke_comment
-      get :search
+      get :search, :popular, :everything
     end
   end
 
