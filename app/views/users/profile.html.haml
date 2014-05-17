@@ -1,3 +1,7 @@
-= render 'render_profile', { user: @user }
+#users
+  #profile
+    .row
+      .main-panel.col-md-7.col-md-offset-1
+        = render 'render_profile', { user: @user }
 #timeline.centered
   = render 'shared/videos_by_video', videos: @user.videos

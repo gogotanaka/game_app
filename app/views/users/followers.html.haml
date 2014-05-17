@@ -1,2 +1,8 @@
-= render 'render_profile', { user: @user }
-= render 'render_users', { users: @user.followers }
+#users
+  #followers
+    .row
+      .main-panel.col-md-7.col-md-offset-1
+        = render 'render_profile', { user: @user }
+      = render 'render_users', { users: @user.followers }
+#timeline.centered
+  = render 'shared/videos_by_video', videos: @user.like_videos
