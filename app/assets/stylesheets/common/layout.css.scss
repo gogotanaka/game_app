@@ -88,14 +88,17 @@ a {
         margin-left: 10px;
         margin-top: 3px;
         font-size: 11px;
+        & > i {
+          margin-left: 10px;
+        }
       }
     }
     & > .video_comments {
       text-align: left;
-      background-color: #F2F0F0;
+      background-color: #fff;
       & > .comment {
         padding: 7px 10px;
-        border-bottom: 1px solid #D9D4D4;
+        border-bottom: 1px solid #E9E4E4;
         border-top: 1px solid #FCFAFA;
         word-wrap: break-word;
         & > .comment_image {

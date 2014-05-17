@@ -1,46 +1,57 @@
 #videos
   #show
     .row
-      .main-panel.col-md-7.col-md-offset-1
-        = @video.contents
-        = @video.movies.first.iframe.html_safe
-        %h1= @video.title
-        .info.clearfix
-          %span.user-thumb.pull-left
-            = render 'shared/user_image', user: @video.user, size: 30
-          %dl.pull-left.byline
-            %dt= @video.user.email
-            %dt= render 'shared/follow_btn', user: @video.user
-        = render 'shared/add_btn', video: @video
-        = render 'shared/like_btn', video: @video
-        %i.fa.fa-plus
-        = @video.add_count
-        %i.fa.fa-thumbs-up
-        = @video.like_count
-        %i.fa.fa-eye
-        = @video.view
-        %section.comments
-          - @video.comments.each do |comment|
-            　
-            %article
-              .info.clearfix
-                %span.user-thumb.pull-left
-                  = render 'shared/user_image', user: comment.user, size: 30
-                %dl.pull-left.byline
-                  %dt= @video.user.email
-                  %dt= comment.contents
-                  - if current_user == comment.user
-                    %dt= link_to 'x', revoke_comment_videos_path(comment_id: comment.id), method: :post
-        - if current_user
-          = form_tag post_comment_video_path do
-            = text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3
-            = submit_tag "コメント", disable_with: 'コメント中', class: "btn"
-      .side-panel.col-md-3
-        %ul
-          - Video.all.each do |video|
-            %li.clearfix.list-item-related
-              %span.thumb-related
-                = link_to video_path(video) do
-                  = image_tag video.movies.first.image_url, width: '100px'
-              %span
-                = video.title
+      #video-box.col-md-10.col-md-offset-1#video-box
+        .main-panel.col-md-7
+          %h1= @video.title
+          .info.clearfix
+            %span.user-thumb.pull-left
+              = render 'shared/user_image', user: @video.user, size: 50
+            %dl.pull-left.byline
+              %dt
+                %h3= link_to @video.user.email, profile_user_path(@video.user)
+              %dt= render 'shared/follow_btn', user: @video.user
+              %dt= @video.contents
+
+          = @video.movies.first.iframe.html_safe
+
+          = render 'shared/add_btn', video: @video
+          = render 'shared/like_btn', video: @video
+          %i.fa.fa-plus
+          = @video.add_count
+          %i.fa.fa-thumbs-up
+          = @video.like_count
+          %i.fa.fa-eye
+          = @video.view
+          %section.comments
+            - @video.comments.each do |comment|
+              　
+              %article
+                .info.clearfix
+                  %span.user-thumb.pull-left
+                    = render 'shared/user_image', user: comment.user, size: 30
+                  %dl.pull-left.byline
+                    %dt= @video.user.email
+                    %dt= comment.contents
+                    - if current_user == comment.user
+                      %dt= link_to 'x', revoke_comment_videos_path(comment_id: comment.id), method: :post
+          - if current_user
+            = form_tag post_comment_video_path do
+              = text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3
+              = submit_tag "コメント", disable_with: 'コメント中', class: "btn"
+        .side-panel.col-md-3
+          %ul
+            - Video.all.each do |video|
+              %li.clearfix.list-item-related
+                .thumb-related.pull-left
+                  = link_to video_path(video) do
+                    = image_tag video.movies.first.image_url, width: '120px'
+                .relation_pin_info.pull-left
+                  = link_to video_path(video) do
+                    = video.title
+                %i.fa.fa-plus
+                = @video.add_count
+                %i.fa.fa-thumbs-up
+                = @video.like_count
+                %i.fa.fa-eye
+                = @video.view
