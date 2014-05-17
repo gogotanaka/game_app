@@ -19,9 +19,9 @@
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li.active
+            %li{class: ('active' if params[:action] == 'popular')}
               = link_to 'Popular', popular_videos_path
-            %li
+            %li{class: ('active' if params[:action] == 'everything')}
               = link_to 'Everything', everything_videos_path
             / %li.dropdown
             /   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
