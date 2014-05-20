@@ -3,7 +3,7 @@ class TagsController < ApplicationController
     query = params[:q] || ""
     @tags = Tag.where("name like ?", "%#{query}%")
     if @tags.empty?
-      [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
+      @tags = [{id: "<<<#{query}>>>", name: "New: \"#{query}\""}]
     else
       @tags
     end

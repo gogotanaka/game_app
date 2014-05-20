@@ -24,6 +24,10 @@
             = @video.like_count
             %i.fa.fa-eye
             = @video.view
+          %section
+            - @video.tags.each do |tag|
+              = tag.name
+
           %section.comments
             - @video.comments.each do |comment|
               %article
