@@ -13,6 +13,8 @@ class VideosController < ApplicationController
   end
 
   def edit
+    service = Scraper::Service.new([@video.movies.first.url])
+    @video_infos = service.execute
   end
 
   def create
