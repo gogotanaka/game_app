@@ -8,4 +8,8 @@ class TagsController < ApplicationController
       @tags
     end
   end
+
+  def show
+    @tag = Tag.find(params[:id])
+  end
 end

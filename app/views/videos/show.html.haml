@@ -14,20 +14,21 @@
               / %dt= render 'shared/follow_btn', user: @video.user
           .iframe_container
             = @video.movies.first.iframe.html_safe
-          .btns
+          .btns{style: 'margin-top: 20px'}
             = render 'shared/add_btn', video: @video
             = render 'shared/like_btn', video: @video
-            = link_to '編集する', edit_video_path(@video)
-          .video_count_infos
+            = link_to '編集する', edit_video_path(@video), class: "btn btn-default"
+          .video_count_infos{style: 'margin-top: 10px'}
             %i.fa.fa-plus
             = @video.add_count
             %i.fa.fa-thumbs-up
             = @video.like_count
             %i.fa.fa-eye
             = @video.view
-          %section
+          .tag_containar{style: 'margin: 20px'}
             - @video.tags.each do |tag|
-              = tag.name
+              %span.tag.rounded_corners{style: 'margin: 10px'}
+                = link_to tag.name, tag_path(tag), style: 'margin-top: 20px'
           %section.comments
             - @video.comments.each do |comment|
               %article

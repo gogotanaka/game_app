@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'videos/popular'
-
   get 'tags/index'
+  resources :tags, only: :show
 
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations" }
   get 'welcome/index'

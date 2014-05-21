@@ -141,74 +141,51 @@ a {
   }
 }
 
+.video_comments {
+  .pin_user {
+    width: 154px;
+    float: left;
+    margin-left: 6px;
+    line-height: 13px;
+    color: #8C7E7E;
+  }
 
-.comment_like {
-  color: rgb(209,56,61);
-  font-size: 12px;
-  margin-left: -2px;
-}
-.comment_like_link {
-  color: rgb(209,56,61);
-  font-weight: normal;
-  &:hover {
-    color: rgb(209,56,61);
+  .pin_user a {
+    color: #8C7E7E;
+    font-weight: bold;
   }
 }
-
-.delete_button {
-  margin-left: 6px;
-  a {
-    font-weight: normal;
-    color: #aaa;
-  }
-}
-.comment_time {
-    color: #888;
-}
-.pin_user {
-  width: 154px;
-  float: left;
-  margin-left: 6px;
-  line-height: 13px;
-  color: #8C7E7E;
-}
-
-.pin_user a {
-  color: #8C7E7E;
-  font-weight: bold;
-}
-
 
 #add_movie {
   p.add_movie_topic {
     font-size: 20px;
     margin: 10px 0;
   }
+  #url_form {
+    margin: 10px 0;
+    .url_form_field {
+      margin: 15px 0 10px;
+    }
+  }
+  .url_form_add_link {
+    text-align: center;
+  }
+  .add_movie_url_form {
+    width: 420px;
+    height: 33px;
+    font-size: 13px;
+  }
+  .url_form_submit {
+    text-align: center;
+    margin: 15px 0;
+  }
 }
 
-#add_movie #url_form {
-  margin: 10px 0;
-}
-.url_form_field {
-  margin: 15px 0 10px;
-}
-.url_form_add_link {
-  text-align: center;
-}
-.add_movie_url_form {
-  width: 420px;
-  height: 33px;
-  font-size: 13px;
-}
-.url_form_submit {
-  text-align: center;
-  margin: 15px 0;
-}
-
-#bs-example-navbar-collapse-1.collapse.navbar-collapse
+#bs-example-navbar-collapse-1.collapse.navbar-collapse {
   ul.nav.navbar-nav > li > a {
     color: #ddd !important;
     &:hover {
       color: #bbb !important;
     }
   }
+}

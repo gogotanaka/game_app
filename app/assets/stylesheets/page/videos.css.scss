@@ -5,15 +5,17 @@
 #videos {
   margin: 0 40px;
   #show {
-
     #video-box {
       background-color: #fff;
       box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
       .main-panel {
         margin-top: 10px;
       }
+      .iframe_container {
+        mergin-bottom: 30px;
+      }
       .btns {
-        mergin-top: 10px;
+        mergin-top: 30px;
       }
       li.list-item-related {
         margin: 15px 10px;
@@ -32,6 +34,15 @@
         .byline {
           margin-left: 10px;
         }
+      }
+      .tag {
+        background-color: #428bca;
+        color: #fff;
+        padding: 3px 4px;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        text-decoration: none;
       }
     }
   }
