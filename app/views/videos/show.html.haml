@@ -8,6 +8,24 @@
         .project-content
           .project-iframe
             = @video.movies.first.iframe.html_safe
+          .project-infos
+            .video-btns.pull-left
+              = render 'shared/add_btn', video: @video
+              = render 'shared/like_btn', video: @video
+              = link_to '編集する', edit_video_path(@video), class: "btn btn-default"
+            .video-count-infos.pull-left
+              %i.fa.fa-plus
+              = @video.add_count
+              %i.fa.fa-thumbs-up
+              = @video.like_count
+              %i.fa.fa-eye
+              = @video.view
+            .video-tag-container
+              - @video.tags.each do |tag|
+                = link_to tag.name, tag_path(tag)
+
+
+
         .project-comments
           #comments-header
             %h4.block-title
@@ -32,24 +50,7 @@
                 = text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3
                 = submit_tag "コメント", disable_with: 'コメント中', class: "btn comment-new-btn pull-right"
 
-        / .iframe_container
-        /
-        / .btns{style: 'margin-top: 20px'}
-        /   = render 'shared/add_btn', video: @video
-        /   = render 'shared/like_btn', video: @video
-        /   = link_to '編集する', edit_video_path(@video), class: "btn btn-default"
-        / .video_count_infos{style: 'margin-top: 10px'}
-        /   %i.fa.fa-plus
-        /   = @video.add_count
-        /   %i.fa.fa-thumbs-up
-        /   = @video.like_count
-        /   %i.fa.fa-eye
-        /   = @video.view
-        / .tag_containar{style: 'margin: 20px'}
-        /   - @video.tags.each do |tag|
-        /     %span.tag.rounded_corners{style: 'margin: 10px'}
-        /       = link_to tag.name, tag_path(tag), style: 'margin-top: 20px'
-        / %section.comments
+
 
 
       .side-panel.pull-left

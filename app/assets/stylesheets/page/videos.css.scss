@@ -55,6 +55,21 @@
             margin-right: auto;
             width: 560px;
           }
+          & > .project-infos {
+            padding: 20px 0 30px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 360px;
+            .video-btns {
+
+            }
+            .video-count-infos {
+              margin: 10px 5px;
+            }
+            .video-tag-container{
+
+            }
+          }
         }
         & > .project-comments {
           #comments-header {
@@ -99,7 +114,6 @@
           }
         }
       }
-
       .side-panel {
         width: 325px;
         padding: 0 22px;
