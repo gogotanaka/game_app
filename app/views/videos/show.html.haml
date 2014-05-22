@@ -21,11 +21,6 @@
               = @video.like_count
               %i.fa.fa-eye
               = @video.view
-            .video-tag-container
-              - @video.tags.each do |tag|
-                = link_to tag.name, tag_path(tag)
-
-
 
         .project-comments
           #comments-header
@@ -51,10 +46,14 @@
                 = text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3
                 = submit_tag "コメント", disable_with: 'コメント中', class: "btn comment-new-btn pull-right"
 
-
-
-
       .side-panel.pull-left
+        .sidebar-label
+          タグ
+        .video-tags-container
+          - @video.tags.each do |tag|
+            %span= link_to tag.name, tag_path(tag), class: 'tag'
+
+
         .sidebar-label
           投稿者
         .sidebar-content
@@ -83,3 +82,6 @@
                   = @video.like_count
                   %i.fa.fa-eye
                   = @video.view
+                .video-tags-container.pull-left
+                  - video.tags.each do |tag|
+                    %span= link_to tag.name, tag_path(tag), class: 'tag'
