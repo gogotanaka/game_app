@@ -1,62 +1,83 @@
 #videos
-  #show
-    .row
-      #video-box.col-md-10.col-md-offset-1#video-box
-        .main-panel.col-md-7
-          %h1= @video.title
+  #show.container
+    #video-box.clearfix
+      .main-panel.pull-left
+        .project-header
+          %h3= @video.title
           %p= @video.contents
-          .info.clearfix
-            %span.user-thumb.pull-left
-              = render 'shared/user_image', user: @video.user, size: 50
-            %dl.pull-left.byline
-              %dt
-                %h3= link_to @video.user.email, profile_user_path(@video.user)
-              / %dt= render 'shared/follow_btn', user: @video.user
-          .iframe_container
+        .project-content
+          .project-iframe
             = @video.movies.first.iframe.html_safe
-          .btns{style: 'margin-top: 20px'}
-            = render 'shared/add_btn', video: @video
-            = render 'shared/like_btn', video: @video
-            = link_to '編集する', edit_video_path(@video), class: "btn btn-default"
-          .video_count_infos{style: 'margin-top: 10px'}
-            %i.fa.fa-plus
-            = @video.add_count
-            %i.fa.fa-thumbs-up
-            = @video.like_count
-            %i.fa.fa-eye
-            = @video.view
-          .tag_containar{style: 'margin: 20px'}
-            - @video.tags.each do |tag|
-              %span.tag.rounded_corners{style: 'margin: 10px'}
-                = link_to tag.name, tag_path(tag), style: 'margin-top: 20px'
-          %section.comments
+        .project-comments
+          #comments-header
+            %h4.block-title
+              = "コメント一覧 （#{@video.comments.count}件）"
+          %ul#comments-list
             - @video.comments.each do |comment|
-              %article
-                .info.clearfix
-                  %span.user-thumb.pull-left
-                    = render 'shared/user_image', user: comment.user, size: 30
-                  %dl.pull-left.byline
-                    %dt= @video.user.email
-                    %dt= comment.contents
-                    - if current_user == comment.user
-                      %dt= link_to 'x', revoke_comment_videos_path(comment_id: comment.id), method: :post
-          - if current_user
-            = form_tag post_comment_video_path do
-              = text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3
-              = submit_tag "コメント", disable_with: 'コメント中', class: "btn"
-        .side-panel.col-md-3
-          %ul
-            - Video.all.each do |video|
-              %li.clearfix.list-item-related
-                .thumb-related.pull-left
-                  = link_to video_path(video) do
-                    = image_tag video.movies.first.image_url, width: '120px'
-                .relation_pin_info.pull-left
+              %li.comment-container.clearfix
+                .comment-user-image-link.pull-left
+                  = render 'shared/user_image', user: comment.user, size: 52
+                .comment-text-container.pill-left.relative
+                  .comment-user-date-wrap
+                    = link_to comment.user.email, '', class: 'user-name-link'
+                    %span.comment-date= comment.created_at
+                    %span.comment-delete-btn
+                      - if current_user == comment.user
+                        = link_to 'x', revoke_comment_videos_path(comment_id: comment.id), method: :post
+                  .comment-text-wrap
+                    = comment.contents
+          #comment-new-form
+            - if current_user
+              = form_tag post_comment_video_path do
+                = text_area_tag :contents, '', placeholder: "コメントを入力してください", class: "form-control", row: 3
+                = submit_tag "コメント", disable_with: 'コメント中', class: "btn comment-new-btn pull-right"
+
+        / .iframe_container
+        /
+        / .btns{style: 'margin-top: 20px'}
+        /   = render 'shared/add_btn', video: @video
+        /   = render 'shared/like_btn', video: @video
+        /   = link_to '編集する', edit_video_path(@video), class: "btn btn-default"
+        / .video_count_infos{style: 'margin-top: 10px'}
+        /   %i.fa.fa-plus
+        /   = @video.add_count
+        /   %i.fa.fa-thumbs-up
+        /   = @video.like_count
+        /   %i.fa.fa-eye
+        /   = @video.view
+        / .tag_containar{style: 'margin: 20px'}
+        /   - @video.tags.each do |tag|
+        /     %span.tag.rounded_corners{style: 'margin: 10px'}
+        /       = link_to tag.name, tag_path(tag), style: 'margin-top: 20px'
+        / %section.comments
+
+
+      .side-panel.pull-left
+        .sidebar-label
+          投稿者
+        .sidebar-content
+          #owner-icon-info.clearfix
+            #owner-user-image-link.pull-left
+              = render 'shared/user_image', user: @video.user, size: 60
+            .pull-left
+              #owner-info
+                = link_to @video.user.email, profile_user_path(@video.user), class: 'owner-name-link'
+              #owner-buttons-container
+                = render 'shared/follow_btn', user: @video.user
+        %ul
+          - Video.all.each do |video|
+            %li.clearfix.list-item-related
+              .thumb-related.pull-left
+                = link_to video_path(video) do
+                  = image_tag video.movies.first.image_url, width: '100px'
+              .relation_pin_info.pull-left
+                .video-link
                   = link_to video_path(video) do
                     = video.title
-                %i.fa.fa-plus
-                = @video.add_count
-                %i.fa.fa-thumbs-up
-                = @video.like_count
-                %i.fa.fa-eye
-                = @video.view
+                .video-count-info
+                  %i.fa.fa-plus
+                  = @video.add_count
+                  %i.fa.fa-thumbs-up
+                  = @video.like_count
+                  %i.fa.fa-eye
+                  = @video.view
