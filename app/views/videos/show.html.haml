@@ -12,7 +12,8 @@
             .video-btns.pull-left
               = render 'shared/add_btn', video: @video
               = render 'shared/like_btn', video: @video
-              = link_to '編集する', edit_video_path(@video), class: "btn btn-default"
+              - if current_user == @video.user
+                = link_to '編集する', edit_video_path(@video), class: "btn btn-default"
             .video-count-infos.pull-left
               %i.fa.fa-plus
               = @video.add_count
