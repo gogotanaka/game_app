@@ -77,11 +77,11 @@
                     = video.title
                 .video-count-info
                   %i.fa.fa-plus
-                  = @video.add_count
+                  = video.add_count
                   %i.fa.fa-thumbs-up
-                  = @video.like_count
+                  = video.like_count
                   %i.fa.fa-eye
-                  = @video.view
+                  = video.view
                 .video-tags-container.pull-left
                   - video.tags.each do |tag|
                     %span= link_to tag.name, tag_path(tag), class: 'tag'
