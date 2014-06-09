@@ -24,6 +24,9 @@
   padding: 0;
 }
 #videos {
+  .form-group {
+    padding: 10px;
+  }
   #show {
     #video-box {
       @include rounded_corners(5px);

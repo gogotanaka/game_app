@@ -1,35 +1,40 @@
 = form_for(@video) do |f|
-  - if @video.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@video.errors.count, "error")
-        prohibited this video from being saved:
-      %ul
-        - @video.errors.full_messages.each do |message|
-          %li= message
   .actions
     = f.submit '動画を追加', class: 'btn btn-info'
-  .field
-    = f.label :title
-    %br/
-    = f.text_field :title, placeholder: "Describe your movie", class: 'form-control'
-  .field
-    = f.label :contents
-    %br/
-    = f.text_area :contents, placeholder: "Describe your movie", rows: "8", type: "text", class: 'form-control'
-  .field
-    = f.text_field :tag_tokens, data: {load: @video.tags}, class: 'form-control'
-
-  - @video_infos.each_with_index do |video_info, i|
-    = hidden_field_tag "video_infos[#{i}][iframe]", video_info.iframe
-    = hidden_field_tag "video_infos[#{i}][url]", video_info.url
-    = hidden_field_tag "video_infos[#{i}][image_url]", video_info.image_urls.sample
-
-  - @video_infos.each.with_index(1) do |video_info, i|
-    %h2= "動画 #{i}"
-    .row
-      = video_info.iframe.html_safe
+  .panel.panel-default
+    .panel-body
       .row
-        - video_info.image_urls.each do |image_url|
-          .col-md-4= image_tag image_url, width: "200px", height: "140px"
+        .col-md-8.col-md-offset-2
+          - if @video.errors.any?
+            #error_explanation
+              %h2
+                = pluralize(@video.errors.count, "error")
+                prohibited this video from being saved:
+              %ul
+                - @video.errors.full_messages.each do |message|
+                  %li= message
+      .form-group
+        = f.label :title, 'タイトル', class: 'control-label col-md-3 col-md-offset-1'
+        .col-md-6
+          = f.text_field :title, placeholder: "動画のタイトルを入力して下さい", class: 'form-control'
+      .form-group
+        = f.label :contents, '動画の内容', class: 'control-label col-md-3 col-md-offset-1'
+        .col-md-6
+          = f.text_area :contents, placeholder: "動画の内容に関する説明を入力して下さい", rows: "8", type: "text", class: 'form-control'
+      .form-group
+        = f.label :contents, 'タグ', class: 'control-label col-md-3 col-md-offset-1'
+        .col-md-6
+          = f.text_field :tag_tokens, data: {load: @video.tags}, class: 'form-control'
+    - @video_infos.each_with_index do |video_info, i|
+      = hidden_field_tag "video_infos[#{i}][iframe]", video_info.iframe
+      = hidden_field_tag "video_infos[#{i}][url]", video_info.url
+      = hidden_field_tag "video_infos[#{i}][image_url]", video_info.image_urls.sample
+
+    - @video_infos.each.with_index(1) do |video_info, i|
+      %h2= "動画 #{i}"
+      .row
+        = video_info.iframe.html_safe
+        .row
+          - video_info.image_urls.each do |image_url|
+            .col-md-4= image_tag image_url, width: "200px", height: "140px"
 
