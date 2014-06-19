@@ -88,15 +88,17 @@ class VideosController < ApplicationController
   end
 
   def search
-    @videos = Video.all
+    words = params[:word].gsub(/　/," ").split(nil)
+    sql = words.map { |word| "videos.title LIKE '%#{word}%'" }.join(' OR ')
+    @videos = Video.where(sql)
   end
 
   def popular
-    @videos = Video.all
+    @videos = Video.joins('LEFT JOIN (SELECT count(*) AS add_count, video_id FROM relation_adds GROUP BY video_id) a ON videos.id = a.video_id').order('add_count DESC')
   end
 
   def everything
-    @videos = Video.all
+    @videos = Video.order('created_at DESC')
   end
 
   private
