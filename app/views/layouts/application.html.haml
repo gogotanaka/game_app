@@ -24,21 +24,15 @@
             %li{class: ('active' if params[:action] == '新着')}
               = link_to '新着', everything_videos_path
 
-            / %li.dropdown
-            /   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            /     カテゴリ
-            /     %b.caret
-            /   %ul.dropdown-menu
-            /     Tag.all.
-            /     %li
-            /       %a{:href => "#"} Action
-            /     %li
-            /       %a{:href => "#"} Another action
-            /     %li
-            /       %a{:href => "#"} Something else here
-            /     %li.divider
-            /     %li
-            /       %a{:href => "#"} Separated link
+            %li.dropdown
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                カテゴリ
+                %b.caret
+              %ul.dropdown-menu
+                - Tag.limit(10).each do |tag|
+                  %li
+                    = link_to tag.name, tag
+
                 / %li.divider
                 / %li
                 /   %a{:href => "#"} One more separated link
