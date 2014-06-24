@@ -11,5 +11,6 @@ class TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
+    @videos = @tag.videos
   end
 end
