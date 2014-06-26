@@ -25,16 +25,17 @@
         = f.label :contents, 'タグ', class: 'control-label col-md-3 col-md-offset-1'
         .col-md-6
           = f.text_field :tag_tokens, data: {load: @video.tags}, class: 'form-control'
-    - @video_infos.each_with_index do |video_info, i|
-      = hidden_field_tag "video_infos[#{i}][iframe]", video_info.iframe
-      = hidden_field_tag "video_infos[#{i}][url]", video_info.url
-      = hidden_field_tag "video_infos[#{i}][image_url]", video_info.image_urls.sample
+      - @video_infos.each_with_index do |video_info, i|
+        = hidden_field_tag "video_infos[#{i}][iframe]", video_info.iframe
+        = hidden_field_tag "video_infos[#{i}][url]", video_info.url
+        = hidden_field_tag "video_infos[#{i}][image_url]", video_info.image_urls.sample
 
-    - @video_infos.each.with_index(1) do |video_info, i|
-      %h2= "動画 #{i}"
-      .row
-        = video_info.iframe.html_safe
-        .row
-          - video_info.image_urls.each do |image_url|
-            .col-md-4= image_tag image_url, width: "200px", height: "140px"
+      - @video_infos.each.with_index(1) do |video_info, i|
+        .col-md-8.col-md-offset-1
+          %h2= "動画 #{i}"
+          .row.video-iframe
+            = video_info.iframe.html_safe
+          .row.video-images
+            - video_info.image_urls.each do |image_url|
+              .col-md-4= image_tag image_url, width: "200px", height: "140px"
 

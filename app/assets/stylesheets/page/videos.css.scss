@@ -27,6 +27,12 @@
   .form-group {
     padding: 10px;
   }
+  .video-iframe {
+    padding: 30px 0;
+  }
+  .video-images {
+    padding: 10px 0;
+  }
   #show {
     #video-box {
       @include rounded_corners(5px);
