@@ -52,7 +52,7 @@ class VideosController < ApplicationController
   def destroy
     @video.destroy
     respond_to do |format|
-      format.html { redirect_to video_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end
