@@ -1,6 +1,13 @@
-$primary: #00FFFF;
+$primary: rgb(0,148,199);
 $secondary: #333333;
 $navbar-default-bg: $secondary;
 $navbar-default-color: $primary;
 
+$navbar-default-brand-color: $primary;
+
 @import "bootstrap";
+
+.navbar-brand {
+  font-size: 30px;
+  font-family: 'Arimo', sans-serif;
+}
