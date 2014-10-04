@@ -50,9 +50,9 @@
       .side-panel.pull-left
         .sidebar-label
           タグ
-        .video-tags-container
+        .video-tags-container.clearfix
           - @video.tags.each do |tag|
-            %span= link_to tag.name, tag_path(tag), class: 'tag'
+            .tag-wraper= link_to tag.name, tag_path(tag), class: 'tag'
 
 
         .sidebar-label
@@ -85,4 +85,4 @@
                   = video.view
                 .video-tags-container.pull-left
                   - video.tags.each do |tag|
-                    %span= link_to tag.name, tag_path(tag), class: 'tag'
+                    .tag-wraper= link_to tag.name, tag_path(tag), class: 'tag'

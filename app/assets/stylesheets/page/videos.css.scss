@@ -125,11 +125,15 @@
         padding: 0 22px;
         .video-tags-container {
           margin: 15px 0;
-          a.tag {
-            background-color: #eeeeee;
-            padding: 3px 4px;
-            @include rounded_corners;
-            border: 1px solid #cacaca;
+          .tag-wraper {
+            float: left;
+            margin: 0 4px 13px;
+            a.tag {
+              background-color: #eeeeee;
+              padding: 3px 4px;
+              @include rounded_corners;
+              border: 1px solid #cacaca;
+            }
           }
         }
         .sidebar-label {
@@ -178,11 +182,15 @@
               }
               .video-tags-container {
                 margin-top: 13px;
-                a.tag {
-                  background-color: #f0f0f0;
-                  padding: 3px 4px;
-                  @include rounded_corners;
-                  border: 1px solid #dadada;
+                .tag-wraper {
+                  float: left;
+                  margin: 0 px 13px;
+                  a.tag {
+                    background-color: #f0f0f0;
+                    padding: 3px 4px;
+                    @include rounded_corners;
+                    border: 1px solid #dadada;
+                  }
                 }
               }
             }
