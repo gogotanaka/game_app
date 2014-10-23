@@ -1,7 +1,20 @@
-%h1= user.email
-%h1= render 'shared/user_image', user: user, size: 30
-= link_to '追加', profile_user_path(user)
-= link_to 'いいね', likes_user_path(user)
-= link_to 'フォロー', follows_user_path(user)
-= link_to 'フォロワー', followers_user_path(user)
+.clearfix.mbottom15
+  %h1.pull-left.pright20= render 'shared/user_image', user: user, size: 100
+  .pull-left
+    %h1= user.email
+    %span
+      = user.contents.presence || 'プロフィールを充実させましょう。'
+
+.btn.btn-default
+  %span.fa.fa-star
+    = link_to '追加', profile_user_path(user)
+.btn.btn-default
+  %span.fa.fa-thumbs-up
+    = link_to 'いいね', likes_user_path(user)
+.btn.btn-default
+  %span.fa.fa-user
+    = link_to 'フォロー', follows_user_path(user)
+.btn.btn-default
+  %span.fa.fa-users
+    = link_to 'フォロワー', followers_user_path(user)
 = render 'shared/follow_btn', user: user
